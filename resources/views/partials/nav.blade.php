@@ -39,8 +39,8 @@
                 </a>
                 <div class="submenu">
                     <ul class="submenu-item">
-                        <li class="nav-item"><a class="nav-link" href="../../pages/forms/basic_elements.html">SMS</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../../pages/forms/advanced_elements.html">FAQ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('admin.notif.index')}}">SMS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('admin.faq.index')}}">FAQ</a></li>
                     </ul>
                 </div>
             </li>

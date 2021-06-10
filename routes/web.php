@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\OtpAuthController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\PenggunaController;
 use App\Http\Controllers\Admin\PengaduanController;
 use App\Http\Controllers\Admin\NotifEventController;
