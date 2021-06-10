@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Faq;
 
 class DashboardController extends Controller
 {
@@ -15,6 +16,8 @@ class DashboardController extends Controller
     public function index()
     {
         //
+        $faqs = Faq::get();
+        return view('welcome', compact('faqs'));
     }
 
     /**

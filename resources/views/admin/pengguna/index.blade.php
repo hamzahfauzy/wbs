@@ -14,34 +14,34 @@
                 </div>
                 @endif
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped datatable">
+                    <table class="table table-hover datatable">
                         <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nama</th>
-                            <th>Nomor HP</th>
-                            <th>Alamat</th>
-                            <th>Jumlah Pengaduan</th>
-                            <th>Aksi</th>
-                        </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>Nama</th>
+                                <th>Nomor HP</th>
+                                <th>Alamat</th>
+                                <th>Jumlah Pengaduan</th>
+                                <th>Aksi</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        @forelse($pengadu as $key => $value)
-                        <tr>
-                            <td>{{++$key}}</td>
-                            <td>{{$value->name}}</td>
-                            <td>{{$value->email}}</td>
-                            <td>{{$value->pengadus[0]->alamat}}</td>
-                            <td>{{$value->pengadus()->count()}}</td>
-                            <td>
-                                <a href="{{route('admin.pengguna.delete',$value->id)}}" class="btn btn-outline-danger" onclick="if(confirm('Hapus pengguna ini ?')){return true}else{return false}">Hapus</a>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="6"><i>Tidak ada data</i></td>
-                        </tr>
-                        @endforelse
+                            @forelse($pengadu as $key => $value)
+                            <tr>
+                                <td>{{++$key}}</td>
+                                <td>{{$value->name}}</td>
+                                <td>{{$value->email}}</td>
+                                <td>{{$value->pengadus[0]->alamat}}</td>
+                                <td>{{$value->pengadus()->count()}}</td>
+                                <td>
+                                    <a href="{{route('admin.pengguna.delete',$value->id)}}" class="btn btn-outline-danger" onclick="if(confirm('Hapus pengguna ini ?')){return true}else{return false}">Hapus</a>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="6"><i>Tidak ada data</i></td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

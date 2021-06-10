@@ -5,7 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>@yield('title',config('app.name', 'Laravel'))</title>
+  <title>@yield('title',config('app.name', 'WBS'))</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{{asset('vendors/ti-icons/css/themify-icons.css')}}">
   <link rel="stylesheet" href="{{asset('vendors/css/vendor.bundle.base.css')}}">
@@ -16,7 +16,31 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="{{asset('css/horizontal-layout-light/style.css')}}">
   <!-- endinject -->
-  <link rel="shortcut icon" href="{{asset('images/logo.png')}}"/>
+  <link rel="shortcut icon" href="{{asset('images/logo.png')}}" />
+  <style>
+    table.dataTable td,
+    table.dataTable th {
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
+      padding: 8px 10px;
+    }
+
+    .dataTables {
+      box-sizing: border-box;
+      display: inline-block;
+      min-width: 1.5em;
+      padding: 8px 10px;
+      margin-top: 0;
+      text-align: center;
+      text-decoration: none !important;
+      cursor: pointer;
+      *cursor: hand;
+      color: #333 !important;
+      border: 0px solid transparent;
+      border-top: 1px solid transparent;
+      border-radius: 2px;
+    }
+  </style>
 </head>
 
 <body>
@@ -24,7 +48,7 @@
     <!-- partial:partials/_horizontal-navbar.html -->
     <div class="horizontal-menu">
       @include('partials.top')
-      
+
       @include('partials.nav')
     </div>
 
@@ -64,9 +88,9 @@
   <script src="{{asset('js/dashboard.js')}}"></script>
   <script src="{{asset('js/todolist.js')}}"></script>
   <!-- End custom js for this page-->
-  
+
   <script>
-  $('.datatable').dataTable()
+    $('.datatable').dataTable()
   </script>
 </body>
 
