@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\NotifEventController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Pengawas\DashboardController as PengawasDashboardController;
 use App\Http\Controllers\Pengawas\PengaduanController as PengawasPengaduanController;
+use App\Models\Faq;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,45 +23,48 @@ use App\Http\Controllers\Pengawas\PengaduanController as PengawasPengaduanContro
 |
 */
 
-Route::middleware('jwt_middleware')->group(function(){
+Route::middleware('jwt_middleware')->group(function () {
 
     Route::get('/', function () {
-        return view('welcome');
+        $faqs = Faq::get();
+        return view('welcome', compact('faqs'));
     });
-    
-    Route::prefix('otp')->name('otp.')->group(function(){
-        Route::get('/',[OtpAuthController::class,'index'])->name('index');
-        Route::post('send',[OtpAuthController::class,'send'])->name('send');
-        Route::post('verified',[OtpAuthController::class,'verified'])->name('verified');
+
+    Route::prefix('otp')->name('otp.')->group(function () {
+        Route::get('/', [OtpAuthController::class, 'index'])->name('index');
+        Route::post('send', [OtpAuthController::class, 'send'])->name('send');
+        Route::post('verified', [OtpAuthController::class, 'verified'])->name('verified');
     });
-    
-    Route::prefix('guest')->name('guest.')->group(function(){
-        Route::get('/',[GuestController::class,'index'])->name('index');
-        Route::middleware('otp_auth')->group(function(){
-            Route::get('/',[GuestController::class,'index'])->name('index');
-            Route::get('create',[GuestController::class,'create'])->name('create');
-            Route::post('store',[GuestController::class,'store'])->name('store');
-            Route::get('show/{pengaduan}',[GuestController::class,'show'])->name('show');
+
+    Route::prefix('guest')->name('guest.')->group(function () {
+        Route::get('/', [GuestController::class, 'index'])->name('index');
+        Route::middleware('otp_auth')->group(function () {
+            Route::get('/', [GuestController::class, 'index'])->name('index');
+            Route::get('create', [GuestController::class, 'create'])->name('create');
+            Route::post('store', [GuestController::class, 'store'])->name('store');
+            Route::get('show/{pengaduan}', [GuestController::class, 'show'])->name('show');
         });
-    
+
         // otp
     });
-    
-    Route::middleware('jwt_auth')->group(function(){
-        Route::middleware('admin')->prefix('admin')->name('admin.')->group(function(){
-            Route::get('/',[AdminDashboardController::class,'index'])->name('index');
-            Route::resource('pengaduan',PengaduanController::class);
-            Route::get('pengguna/{user}/delete',[PenggunaController::class,'delete'])->name('pengguna.delete');
-            Route::resource('pengguna',PenggunaController::class);
-            Route::resource('faq',FaqController::class);
-            Route::resource('notif',NotifEventController::class);
+
+    Route::middleware('jwt_auth')->group(function () {
+        Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
+            Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
+            Route::resource('pengaduan', PengaduanController::class);
+            Route::get('pengguna/{user}/delete', [PenggunaController::class, 'delete'])->name('pengguna.delete');
+            Route::resource('pengguna', PenggunaController::class);
+            Route::resource('faq', FaqController::class);
+            Route::get('faq/{faq}/delete', [FaqController::class, 'delete'])->name('faq.delete');
+            Route::get('faq/{faq}/edit', [FaqController::class, 'edit'])->name('faq.edit');
+            Route::patch('update/{faq}', [FaqController::class, 'update'])->name('faq.update');
+            Route::resource('notif', NotifEventController::class);
         });
-    
-        Route::middleware('pengawas')->prefix('pengawas')->name('pengawas.')->group(function(){
-            Route::get('/',[PengawasDashboardController::class,'index'])->name('index');
-            Route::get('pengaduan/{pengaduan}/update-status/{status}',[PengawasPengaduanController::class,'updateStatus'])->name('pengaduan.update-status');
-            Route::resource('pengaduan',PengawasPengaduanController::class);
+
+        Route::middleware('pengawas')->prefix('pengawas')->name('pengawas.')->group(function () {
+            Route::get('/', [PengawasDashboardController::class, 'index'])->name('index');
+            Route::get('pengaduan/{pengaduan}/update-status/{status}', [PengawasPengaduanController::class, 'updateStatus'])->name('pengaduan.update-status');
+            Route::resource('pengaduan', PengawasPengaduanController::class);
         });
     });
 });
-
