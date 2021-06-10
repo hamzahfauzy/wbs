@@ -54,10 +54,8 @@ Route::middleware('jwt_middleware')->group(function () {
             Route::resource('pengaduan', PengaduanController::class);
             Route::get('pengguna/{user}/delete', [PenggunaController::class, 'delete'])->name('pengguna.delete');
             Route::resource('pengguna', PenggunaController::class);
+            Route::get('faq/{faq}/delete',[FaqController::class,'delete'])->name('faq.delete');
             Route::resource('faq', FaqController::class);
-            Route::get('faq/{faq}/delete', [FaqController::class, 'delete'])->name('faq.delete');
-            Route::get('faq/{faq}/edit', [FaqController::class, 'edit'])->name('faq.edit');
-            Route::patch('update/{faq}', [FaqController::class, 'update'])->name('faq.update');
             Route::resource('notif', NotifEventController::class);
         });
 

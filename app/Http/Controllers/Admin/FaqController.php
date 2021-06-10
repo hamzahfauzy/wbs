@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Faq;
-use Illuminate\Support\Facades\DB;
 
 
 class FaqController extends Controller
@@ -31,12 +30,6 @@ class FaqController extends Controller
     {
         return view('admin.faq.tambah');
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
 
     /**
      * Store a newly created resource in storage.
@@ -47,32 +40,8 @@ class FaqController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'question' => 'required',
-            'answer' => 'required',
-            'order_number' => 'required',
-        ], [
-            'faqs.question.*.required' => 'Question tidak boleh kosong',
-            'faqs.answer.*.required' => 'Answer tidak boleh kosong'
-        ]);
-
-        DB::beginTransaction();
-        try {
-
-            // insert faq
-            $faq = Faq::create([
-                'question'     => $request->question,
-                'answer' => $request->answer,
-                'order_number'   => $request->order_number
-            ]);
-
-
-            DB::commit();
-            return redirect()->route('admin.faq.index')->with('success', 'FAQ berhasil ditambah');
-        } catch (\Throwable $th) {
-            throw $th;
-            DB::rollback();
-        }
+        Faq::create($request->all());
+        return redirect()->route('admin.faq.index')->with('success', 'FAQ berhasil ditambah');
     }
 
     /**
@@ -118,14 +87,15 @@ class FaqController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Faq $faq)
     {
         //
     }
 
-    public function delete(Faq $faq)
+    function delete(Faq $faq)
     {
         $faq->delete();
         return redirect()->route('admin.faq.index')->with('success', 'FAQ Berhasil Dihapus');
     }
+    
 }

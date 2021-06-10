@@ -34,33 +34,30 @@
 
 <div class="row">
     <div class="col-12">
-        <div class="card">
-            <div class="card-body text-center">
+        <h4 class="text-center">Hal yang sering ditanyakan :</h4>
+    </div>
+</div>
 
-                <h4 class="text-center">Hal yang sering ditanyakan :</h4>
-            </div>
-        </div>
-        @forelse($faqs as $faq)
-
-        <div id="accordion">
+<div class="row">
+    <div class="col-12">
+        <div class="accordion accordion-bordered" id="accordion-2" role="tablist">
+            @foreach($faqs as $key => $value)
             <div class="card">
-                <div class="card-header" id=".{{$faq->id}}.">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            {{$faq->question}}
-                        </button>
-                    </h5>
+                <div class="card-header" role="tab" id="heading-{{$value->id}}">
+                    <h6 class="mb-0">
+                        <a data-toggle="collapse" href="#collapse-{{$value->id}}" aria-expanded="false" aria-controls="collapse-{{$value->id}}" class="collapsed">
+                            {{$value->question}}
+                        </a>
+                    </h6>
                 </div>
-
-                <div id="collapseOne" class="collapse show" aria-labelledby=".{{$faq->id}}." data-parent="#accordion">
+                <div id="collapse-{{$value->id}}" class="collapse" role="tabpanel" aria-labelledby="heading-{{$value->id}}" data-parent="#accordion-2" style="">
                     <div class="card-body">
-                        {{$faq->answer}}
+                        <p class="mb-0">{{$value->answer}}</p>
                     </div>
                 </div>
             </div>
+            @endforeach
         </div>
-        @empty
-        @endforelse
     </div>
 </div>
 @endsection

@@ -44,7 +44,7 @@
 
                 <div class="form-group">
                     <label for="">Alamat</label>
-                    <p>{{$pengaduan->pengadu->alamat}}</p>
+                    <p>{{$pengaduan->pengadu->alamat??''}}</p>
                 </div>
 
                 <div class="form-group">

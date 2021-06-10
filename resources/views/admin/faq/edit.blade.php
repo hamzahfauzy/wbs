@@ -17,6 +17,7 @@
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
             <a href="{{route('admin.faq.index')}}" class="btn btn-danger btn-sm"><em class="ti-arrow-left"></em> Kembali</a>
+        </li>
         <li class="list-group-item">
             <form action="{{route('admin.faq.update', $faq->id)}}" method="POST">
                 @csrf
