@@ -5,6 +5,7 @@
             <a class="navbar-brand brand-logo text-white font-weight-bold" href="{{url()->to('/')}}"><img src="{{asset('images/logo.png')}}" style="height:58px!important;"> Whistle Blowing System</a>
             <a class="navbar-brand brand-logo-mini text-white font-weight-bold" href="{{url()->to('/')}}"><img src="{{asset('images/logo.png')}}" style="height:58px!important;"> WBS</a>
         </div>
+        @if($user)
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
@@ -14,20 +15,18 @@
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                 <a class="dropdown-item" href="javascript:;" style="background: #eaeaea;border-top: 5px solid #558B2F; cursor: default">
                 <i class="ti-user text-primary" style="color: #fff; font-weight: 700"></i>
-                <h4>{{$user?$user->nama:'Pengunjung'}}<br>
-                <small>{{$user?$user->nama_opd:'Pengunjung'}}</small>
+                <h4>{{$user->nama}}<br>
+                <small>{{$user->nama_opd}}</small>
                 </h4>
                 </a>
-                @if($user)
-                <a class="dropdown-item">
+                <a href="https://layanan.labura.go.id" class="dropdown-item">
                 <i class="ti-shift-left text-primary"></i>
                 Kembali ke Portal Lainnya
                 </a>
-                <a class="dropdown-item">
+                <a href="{{route('logout')}}" class="dropdown-item">
                 <i class="ti-power-off text-primary"></i>
                 Logout
                 </a>
-                @endif
             </div>
             </li>
         </ul>

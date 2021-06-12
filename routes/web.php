@@ -49,6 +49,10 @@ Route::middleware('jwt_middleware')->group(function () {
     });
 
     Route::middleware('jwt_auth')->group(function () {
+        Route::get('/logout',function(){
+            \Cookie::forget('labura_layanan_app_token');
+            return redirect()->to('https://layanan.labura.go.id');
+        })->name('logout');
         Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
             Route::resource('pengaduan', PengaduanController::class);
