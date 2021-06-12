@@ -55,6 +55,7 @@ Route::middleware('jwt_middleware')->group(function () {
         })->name('logout');
         Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
             Route::get('/', [AdminDashboardController::class, 'index'])->name('index');
+            Route::get('pengaduan/{pengaduan}/update-status/{status}', [PengaduanController::class,'updateStatus'])->name('pengaduan.update-status');
             Route::resource('pengaduan', PengaduanController::class);
             Route::get('pengguna/{user}/delete', [PenggunaController::class, 'delete'])->name('pengguna.delete');
             Route::resource('pengguna', PenggunaController::class);
