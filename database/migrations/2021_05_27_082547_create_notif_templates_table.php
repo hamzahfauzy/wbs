@@ -15,8 +15,8 @@ class CreateNotifTemplatesTable extends Migration
     {
         Schema::create('notif_templates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('notif_event_id')->constrained()->cascadeOnDelete();
             $table->string('send_to'); // guest, admin, pengawas
+            $table->string('event_name'); // guest, admin, pengawas
             $table->text('template_text');
             $table->timestamps();
         });

@@ -61,7 +61,8 @@ Route::middleware('jwt_middleware')->group(function () {
             Route::resource('pengguna', PenggunaController::class);
             Route::get('faq/{faq}/delete',[FaqController::class,'delete'])->name('faq.delete');
             Route::resource('faq', FaqController::class);
-            Route::resource('notif', NotifEventController::class);
+            Route::match(['get','post'],'notif', [NotifEventController::class,'index'])->name('notif.index');
+            // Route::resource('notif', NotifEventController::class);
         });
 
         Route::middleware('pengawas')->prefix('pengawas')->name('pengawas.')->group(function () {

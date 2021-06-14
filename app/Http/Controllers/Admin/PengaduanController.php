@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Pengaduan;
+use App\Models\JwtSession;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 

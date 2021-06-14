@@ -53,7 +53,8 @@ class GuestController extends Controller
             'deskripsi' => 'required',
             'pihaks.nama.*' => 'required',
             'pihaks.jabatan.*' => 'required',
-            'lampirans.*' => 'required',
+            'lampirans.file.*' => 'required',
+            'lampirans.keterangan.*' => 'required',
             'privasi' => 'required',
         ],[
             'pihaks.nama.*.required' => 'Nama Pihak yang Terlibat tidak boleh kosong',
@@ -139,9 +140,10 @@ class GuestController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Pengaduan $pengaduan)
     {
         //
+        return view('guest.show',compact('pengaduan'));
     }
 
     /**
