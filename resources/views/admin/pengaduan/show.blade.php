@@ -85,6 +85,13 @@
                 Obrolan
             </div>
             <div class="card-body">
+                <!-- Chat Iframe -->
+
+                <!-- Chat Message -->
+                <div class="form-group">
+                    <textarea id="message" class="form-control" placeholder="Pesan disini..."></textarea>
+                    <button class="btn btn-block btn-success">Submit</button>
+                </div>
             </div>
         </div>
     </div>

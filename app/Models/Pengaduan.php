@@ -60,4 +60,9 @@ class Pengaduan extends Model
     {
         return $this->hasOne(Pengadu::class);
     }
+
+    function conversations()
+    {
+        return $this->hasManu(Conversation::class);
+    }
 }

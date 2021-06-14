@@ -46,9 +46,16 @@ Route::middleware('jwt_middleware')->group(function () {
         });
 
         // otp
+        Route::get('message-content/{pengaduan_id}',function(Pengaduan $pengaduan){
+            
+        })->name('message-content');
     });
 
     Route::middleware('jwt_auth')->group(function () {
+        Route::get('message-content/{pengaduan_id}',function(){
+
+        })->name('message-content');
+
         Route::get('/logout',function(){
             \Cookie::forget('labura_layanan_app_token');
             return redirect()->to('https://layanan.labura.go.id');
