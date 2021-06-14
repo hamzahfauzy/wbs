@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Wapiku;
 use App\Models\Pengaduan;
 use App\Models\JwtSession;
 use Illuminate\Http\Request;
+use App\Models\NotifTemplate;
 use App\Http\Controllers\Controller;
 
 class PengaduanController extends Controller
@@ -69,6 +71,31 @@ class PengaduanController extends Controller
             'role'         => $user->role->name,
             'status'       => $status
         ]);
+
+        $event_name = [
+            'Di Arsipkan' => 'pengaduan_arsip',
+            'Di Proses'   => 'pengaduan_proses',
+            'Selesai'     => 'pengaduan_selesai'
+        ];
+
+        $pengadu = $pengaduan->pengadu;
+        if($pengadu)
+        {
+            // notif user
+            $notif = NotifTemplate::where('send_to','user')->where('event_name',$event_name[$status])->first();
+            if($notif)
+            {
+                $message = $notif->template_text;
+
+                $message = str_replace('[nama]', $pengadu->nama, $message);
+                $message = str_replace('[alamat]', $pengadu->alamat, $message);
+                $message = str_replace('[nomor_hp]', $pengadu->nomor_hp, $message);
+                $message = str_replace('[judul]', $pengaduan->judul, $message);
+                $message = str_replace('[deskripsi]', $pengaduan->deskripsi, $message);
+                $message .= '\n _Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara. Simpan nomor ini agar link bisa diklik._';
+                Wapiku::send($pengadu->nomor_hp, $message);
+            }
+        }
 
         return redirect()->route('admin.pengaduan.show',$pengaduan->id)->with('success','Pengaduan berhasil di update');
     }

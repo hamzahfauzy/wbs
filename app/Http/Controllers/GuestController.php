@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Bukti;
 use App\Models\Pihak;
+use App\Models\Wapiku;
 use App\Models\Pengadu;
 use App\Models\Riwayat;
 use App\Models\Pengaduan;
 use Illuminate\Http\Request;
+use App\Models\NotifTemplate;
 use Illuminate\Support\Facades\DB;
 
 class GuestController extends Controller
@@ -123,6 +125,36 @@ class GuestController extends Controller
                     'file_url' => $file_url,
                 ]);
             }
+
+            // user notif
+            $notif = NotifTemplate::where('send_to','user')->where('event_name','pengaduan_masuk')->first();
+            if($notif)
+            {
+                $message = $notif->template_text;
+
+                $message = str_replace('[nama]', $pengadu->nama, $message);
+                $message = str_replace('[alamat]', $pengadu->alamat, $message);
+                $message = str_replace('[nomor_hp]', $pengadu->nomor_hp, $message);
+                $message = str_replace('[judul]', $pengaduan->judul, $message);
+                $message = str_replace('[deskripsi]', $pengaduan->deskripsi, $message);
+                $message .= '\n _Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara. Simpan nomor ini agar link bisa diklik._';
+                Wapiku::send($nomor_hp, $message);
+            }
+
+            // admin notif
+            // $notif = NotifTemplate::where('send_to','admin')->where('event_name','pengaduan_masuk')->first();
+            // if($notif)
+            // {
+            //     $message = $notif->template_text;
+
+            //     $message = str_replace('[nama]', $pengadu->nama, $message);
+            //     $message = str_replace('[alamat]', $pengadu->alamat, $message);
+            //     $message = str_replace('[nomor_hp]', $pengadu->nomor_hp, $message);
+            //     $message = str_replace('[judul]', $pengaduan->judul, $message);
+            //     $message = str_replace('[deskripsi]', $pengaduan->deskripsi, $message);
+            //     $message .= '\n _Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara. Simpan nomor ini agar link bisa diklik._';
+            //     Wapiku::send($nomor_hp, $message);
+            // }
 
             DB::commit();
             return redirect()->route('guest.index')->with('success','Pengaduan berhasil disimpan');
