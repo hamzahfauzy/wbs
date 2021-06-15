@@ -10,7 +10,7 @@
             </li>
             @if($user)
             <li class="nav-item">
-                <a class="nav-link" href="{{route('pengawas.pengaduan.index')}}">
+                <a class="nav-link" href="javascript:void(0)">
                 <i class="ti-bell menu-icon"></i>
                 <span class="menu-title">Pengaduan</span>
                 <i class="menu-arrow"></i>
