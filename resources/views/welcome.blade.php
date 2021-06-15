@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+<?php $user = App\Models\JwtSession::user() ?>
 @if($user)
 <div class="row">
     <div class="col-12">
