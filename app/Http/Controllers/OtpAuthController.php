@@ -40,7 +40,7 @@ class OtpAuthController extends Controller
             'expired_at' => $expired_at,
         ]);
         
-        return Wapiku::send($nomor_hp,'Kode OTP Anda adalah '.$otp.'\n _Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara. Simpan nomor ini agar link bisa diklik._');
+        return Wapiku::send($nomor_hp,'Kode OTP Anda adalah '.$otp.'\n\n_Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara. Simpan nomor ini agar link bisa diklik._');
     }
 
     function verified(Request $request)

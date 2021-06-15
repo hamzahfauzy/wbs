@@ -1,6 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+@if($user)
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <span class="h5 mb-4 text-gray-800">WBS Kab. Labuhanbatu Utara</span>
+            </div>
+            <div class="card-body">
+                Hai, {{$user->nama}}. Selamat Datang di WBS Kab. Labuhanbatu Utara
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 <div class="row">
     <div class="col-12 col-md-6 grid-margin stretch-card">
         <div class="card">
