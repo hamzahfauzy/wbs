@@ -3,14 +3,14 @@
 @section('content')
 <?php $user = App\Models\JwtSession::user() ?>
 @if($user)
-<div class="row">
+<div class="row mb-4">
     <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <span class="h5 mb-4 text-gray-800">WBS Kab. Labuhanbatu Utara</span>
             </div>
             <div class="card-body">
-                Hai, {{$user->nama}}. Selamat Datang di WBS Kab. Labuhanbatu Utara
+                Hai, <b>{{$user->nama}}</b>. Selamat Datang di WBS Kab. Labuhanbatu Utara
             </div>
         </div>
     </div>
