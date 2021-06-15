@@ -25,7 +25,7 @@ class GuestController extends Controller
     {
         //
         $user = session('user')??User::where('email',session('otp_auth'))->first();
-        $pengadus = $user->pengadus;
+        $pengadus = isset($user->pengadus) ? $user->pengadus : [];
         return view('guest.index',compact('pengadus'));
     }
 
@@ -138,7 +138,7 @@ class GuestController extends Controller
                 $message = str_replace('[nomor_hp]', $pengadu->nomor_hp, $message);
                 $message = str_replace('[judul]', $pengaduan->judul, $message);
                 $message = str_replace('[deskripsi]', $pengaduan->deskripsi, $message);
-                $message .= '\n _Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara._';
+                $message .= '\n\n_Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara._';
                 Wapiku::send($nomor_hp, $message);
             }
 
@@ -153,7 +153,7 @@ class GuestController extends Controller
                 $message = str_replace('[nomor_hp]', $pengadu->nomor_hp, $message);
                 $message = str_replace('[judul]', $pengaduan->judul, $message);
                 $message = str_replace('[deskripsi]', $pengaduan->deskripsi, $message);
-                $message .= '\n _Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara._';
+                $message .= '\n\n_Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara._';
                 $admin = Admin::get();
                 foreach($admin->pegawai as $pegawai)
                 {

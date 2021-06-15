@@ -5,7 +5,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{url()->to('/')}}">
                 <i class="ti-home menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title">Home</span>
                 </a>
             </li>
             @if($user)

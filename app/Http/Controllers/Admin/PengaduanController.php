@@ -92,7 +92,7 @@ class PengaduanController extends Controller
                 $message = str_replace('[nomor_hp]', $pengadu->nomor_hp, $message);
                 $message = str_replace('[judul]', $pengaduan->judul, $message);
                 $message = str_replace('[deskripsi]', $pengaduan->deskripsi, $message);
-                $message .= '\n _Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara._';
+                $message .= '\n\n_Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara._';
                 Wapiku::send($pengadu->nomor_hp, $message);
             }
         }

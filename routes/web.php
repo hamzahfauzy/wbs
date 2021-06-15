@@ -26,7 +26,7 @@ use App\Models\Faq;
 Route::middleware('jwt_middleware')->group(function () {
 
     Route::get('/', function () {
-        $faqs = Faq::get();
+        $faqs = Faq::orderby('order_number')->get();
         return view('welcome', compact('faqs'));
     });
 

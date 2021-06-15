@@ -34,13 +34,8 @@
 
 <div class="row">
     <div class="col-12">
-        <h4 class="text-center">Hal yang sering ditanyakan :</h4>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12">
-        <div class="accordion accordion-bordered" id="accordion-2" role="tablist">
+        <div class="accordion accordion-bordered pt-4" id="accordion-2" role="tablist">
+            <h4 class="text-center pb-3">Hal yang sering ditanyakan :</h4>
             @foreach($faqs as $key => $value)
             <div class="card">
                 <div class="card-header" role="tab" id="heading-{{$value->id}}">
