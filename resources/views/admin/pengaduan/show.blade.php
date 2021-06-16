@@ -7,7 +7,7 @@
 }
 </style>
 <div class="row">
-    <div class="col-12 grid-margin stretch-card mx-auto">
+    <div class="col-12 col-md-7 grid-margin stretch-card mx-auto">
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="card-title">
