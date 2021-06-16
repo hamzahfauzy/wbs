@@ -5,6 +5,64 @@
 .form-group label {
     font-weight:bold;
 }
+.talk-bubble {
+    display: block;
+    position: relative;
+	width: auto;
+	height: auto;
+    margin-bottom:10px;
+    padding-left:10px;
+    padding-right:10px;
+    overflow:auto;
+}
+
+/* Right triangle placed top left flush. */
+
+.left-top:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+    left: 0px;
+	right: auto;
+    top: 0px;
+	bottom: auto;
+	border: 22px solid;
+	border-color: lightyellow transparent transparent transparent;
+}
+.talktext{
+    display:inline-block;
+    width:auto;
+    padding: 1em;
+	text-align: left;
+    line-height: 1.5em;
+    background:lightyellow;
+}
+.talktext p{
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+}
+
+.right-top:after{
+	content: ' ';
+	position: absolute;
+	width: 0;
+	height: 0;
+	left: auto;
+    right: 0px;
+    top: 0px;
+	bottom: auto;
+	border: 22px solid;
+	border-color: #2ecc71 transparent transparent transparent;
+}
+
+.right-top .talktext {
+    text-align:right!important;
+    float:right;
+    background:#2ecc71;
+    color:#FFF;
+}
 </style>
 <div class="row">
     <div class="col-12 col-md-7 grid-margin stretch-card mx-auto">
