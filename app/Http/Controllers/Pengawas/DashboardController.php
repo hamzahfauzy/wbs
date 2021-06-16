@@ -38,7 +38,7 @@ class DashboardController extends Controller
             $message = str_replace('[judul]', $pengaduan->judul, $message);
             $message = str_replace('[deskripsi]', $pengaduan->deskripsi, $message);
             $message .= '\n\n_Ini adalah sistem notifikasi Whatsapp by: Dinas Kominfo Kabupaten Labuhanbatu Utara._';
-            Wapiku::send($nomor_hp, $message);
+            Wapiku::send($pengaduan->pengadu->nomor_hp, $message);
         }
 
         // admin notif
