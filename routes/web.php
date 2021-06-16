@@ -72,8 +72,8 @@ Route::middleware('jwt_middleware')->group(function () {
             Route::resource('faq', FaqController::class);
             Route::match(['get','post'],'notif', [NotifEventController::class,'index'])->name('notif.index');
 
-            Route::post('send-msg/{pengaduan}', [DashboardController::class, 'sendMsg'])->name('send-msg');
-            Route::get('conversation/{pengaduan}', [DashboardController::class, 'conversation'])->name('conversation');
+            Route::post('send-msg/{pengaduan}', [AdminDashboardController::class, 'sendMsg'])->name('send-msg');
+            Route::get('conversation/{pengaduan}', [AdminDashboardController::class, 'conversation'])->name('conversation');
             // Route::resource('notif', NotifEventController::class);
         });
 
