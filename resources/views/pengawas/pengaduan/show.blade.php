@@ -77,25 +77,6 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12 grid-margin stretch-card mx-auto">
-        <div class="card">
-            <div class="card-header">
-                Obrolan
-            </div>
-            <div class="card-body">
-                <!-- Chat Iframe -->
-                <iframe id="iframe" src="{{route('message-content',$pengaduan->id)}}"></iframe>
-
-                <!-- Chat Message -->
-                <div class="form-group">
-                    <textarea id="message" class="form-control" placeholder="Pesan disini..."></textarea>
-                    <button class="btn btn-block btn-success">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="col-12 col-md-5 grid-margin stretch-card mx-auto">
         <div class="card">
             <div class="card-header">
