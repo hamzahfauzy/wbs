@@ -190,7 +190,7 @@ function sendMsg(el)
         })
     })
 }
-
+var last_chat = ''
 setInterval(e => {
     fetch('{{route('admin.conversation',$pengaduan->id)}}')
     .then(res => res.json())
@@ -204,6 +204,14 @@ setInterval(e => {
                     </div>
                 </div>`;
         })
+
+        if(chatContent != last_chat)
+        {
+            last_chat = chatContent
+            var element = document.querySelector('.chat-content');
+            element.scrollTop = element.scrollHeight - element.clientHeight;
+        }
+
         document.querySelector('.chat-content').innerHTML = chatContent
     })
 },2000)
