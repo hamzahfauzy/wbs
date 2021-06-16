@@ -20,6 +20,25 @@ class DashboardController extends Controller
         return view('welcome', compact('faqs'));
     }
 
+    function sendMsg(Request $request, $pengaduan)
+    {
+        $user = App\Models\JwtSession::user();
+        Conversation::create([
+            'pengaduan_id' => $pengaduan,
+            'replied_by' => $user->nama,
+            'replied_by_id' => $user->user_id,
+            'messages'     => $request->messages
+        ]);
+
+        return ['status'=>'success'];
+    }
+
+    function conversation($pengaduan)
+    {
+        $conversations = Conversation::where('pengaduan_id',$pengaduan)->with(['pengaduan','pengaduan.pengadu'])->get()->toArray();
+        return $conversations;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

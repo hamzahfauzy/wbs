@@ -96,5 +96,77 @@
             </div>
         </div>
     </div>
+    <div class="col-12 col-md-5 grid-margin stretch-card mx-auto">
+        <div class="card">
+            <div class="card-header">
+                Obrolan
+            </div>
+            <div class="card-body chat-content" style="height:350px;overflow:auto;">
+            </div>
+            <div class="card-footer">
+                <div class="form-group">
+                    <textarea id="message" class="form-control" placeholder="Pesan disini..."></textarea>
+                    <button class="btn btn-block btn-success" onclick="sendMsg(this)">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+@endsection
+
+@section('script')
+<script>
+const csrfToken = document.head.querySelector("[name~=csrf-token][content]").content;
+function sendMsg(el)
+{
+    el.disabled = true
+    el.innerHTML = 'Mengirim'
+    var message = document.querySelector('#message')
+
+    fetch('{{route('pengawas.send-msg',$pengaduan->id)}}',{
+        method: 'post',
+        body: JSON.stringify({
+            'messages': message.value
+        }),
+        headers: {
+            'Content-Type': 'application/json',
+            "X-CSRF-Token": csrfToken
+        }
+    })
+    .then(response => response.json())
+    .then(response => {
+        if(response.status == 'success')
+        {
+            el.innerHTML = 'Terkirim'
+            message.value = ''
+        }
+        else
+        {
+            el.innerHTML = 'Gagal Terkirim'
+        }
+
+        setTimeout(e => {
+            el.disabled = false
+            el.innerHTML = 'Submit'
+        })
+    })
+}
+
+setInterval(e => {
+    fetch('{{route('pengawas.conversation',$pengaduan->id)}}')
+    .then(res => res.json())
+    .then(res => {
+        var chatContent = ''
+        res.forEach(r => {
+            chatContent += `<div class="talk-bubble ${r.replied_by==null?'left-top':'right-top'}">
+                    <div class="talktext">
+                        <b>${r.replied_by==null?r.pengaduan.pengadu.nama:'Anda'}</b><br>
+                        <p>${r.messages}</p>
+                    </div>
+                </div>`;
+        })
+        document.querySelector('.chat-content').innerHTML = chatContent
+    })
+},2000)
+</script>
 @endsection

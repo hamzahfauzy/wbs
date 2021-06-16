@@ -10,9 +10,11 @@ use App\Models\Wapiku;
 use App\Models\Pengadu;
 use App\Models\Riwayat;
 use App\Models\Pengaduan;
+use App\Models\Conversation;
 use Illuminate\Http\Request;
 use App\Models\NotifTemplate;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class GuestController extends Controller
 {
@@ -176,6 +178,22 @@ class GuestController extends Controller
         }
         // return redirect()->back();
 
+    }
+
+    function sendMsg(Request $request, $pengaduan)
+    {
+        Conversation::create([
+            'pengaduan_id' => $pengaduan,
+            'messages'     => $request->messages
+        ]);
+
+        return ['status'=>'success'];
+    }
+
+    function conversation($pengaduan)
+    {
+        $conversations = Conversation::where('pengaduan_id',$pengaduan)->with(['pengaduan','pengaduan.pengadu'])->get()->toArray();
+        return $conversations;
     }
 
     /**

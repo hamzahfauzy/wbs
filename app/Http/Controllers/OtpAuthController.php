@@ -67,7 +67,7 @@ class OtpAuthController extends Controller
             session(['otp_auth'=>$nomor_hp]);
             return redirect()->to($_GET['to']);
         }
-        return redirect()->to($_GET['to'])->with('error','OTP tidak valid');
+        return redirect()->to($_GET['to'])->with(['error'=>'OTP tidak valid']);
     }
 
     /**

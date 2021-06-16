@@ -16,8 +16,8 @@ class CreateConversationsTable extends Migration
         Schema::create('conversations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pengaduan_id')->constrained()->cascadeOnDelete();
-            $table->string('replied_by');
-            $table->string('replied_by_id');
+            $table->string('replied_by')->nullable();
+            $table->string('replied_by_id')->nullable();
             $table->text('messages');
             $table->timestamps();
         });

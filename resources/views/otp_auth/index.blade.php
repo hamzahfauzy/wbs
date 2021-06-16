@@ -21,7 +21,7 @@
                             </div>
                             <input type="tel" name="nomor_hp" class="form-control" placeholder="Contoh : 8123456789">
                         </div>
-                        <button type="button" class="btn btn-primary btn-otp mt-2 btn-sm" onclick="sendOtp()"><span id="btn-label">Kirim OTP</span> <span id="timer"></span></button>
+                        <button type="button" class="btn btn-primary btn-otp mt-2 btn-sm" onclick="sendOtp(this)"><span id="btn-label">Kirim OTP</span> <span id="timer"></span></button>
                     </div>
                     <div class="verif-otp d-none">
                         <label for="">Kode OTP sudah dikirimkan ke WhatsApp anda</label>
@@ -38,8 +38,9 @@
 </div>
 <script>
 var countdown, timer = 120
-async function sendOtp()
+async function sendOtp(el)
 {
+    el.disabled = true
     var nomor_hp = document.querySelector('input[name="nomor_hp"]').value
     if(nomor_hp == '')
     {
@@ -67,15 +68,17 @@ async function sendOtp()
         document.querySelector('#btn-label').innerHTML = 'Menunggu'
         document.querySelector('.btn-otp').disabled = true
         countdown = setInterval(e=>{
+            document.querySelector('#timer').innerHTML = '('+ timer +')'
             if(timer == 0)
             {
+                el.disabled = false
+                document.querySelector('#timer').innerHTML = ''
                 clearInterval(countdown)
                 document.querySelector('.btn-otp').disabled = false
                 document.querySelector('#btn-label').innerHTML = 'Kirim Ulang'
                 timer = 120
                 return
             }
-            document.querySelector('#timer').innerHTML = '('+ timer +')'
             timer--
         },1000)
 

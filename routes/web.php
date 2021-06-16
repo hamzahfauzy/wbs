@@ -42,6 +42,8 @@ Route::middleware('jwt_middleware')->group(function () {
             Route::get('/', [GuestController::class, 'index'])->name('index');
             Route::get('create', [GuestController::class, 'create'])->name('create');
             Route::post('store', [GuestController::class, 'store'])->name('store');
+            Route::post('send-msg/{pengaduan}', [GuestController::class, 'sendMsg'])->name('send-msg');
+            Route::get('conversation/{pengaduan}', [GuestController::class, 'conversation'])->name('conversation');
             Route::get('show/{pengaduan}', [GuestController::class, 'show'])->name('show');
         });
 
@@ -69,11 +71,17 @@ Route::middleware('jwt_middleware')->group(function () {
             Route::get('faq/{faq}/delete',[FaqController::class,'delete'])->name('faq.delete');
             Route::resource('faq', FaqController::class);
             Route::match(['get','post'],'notif', [NotifEventController::class,'index'])->name('notif.index');
+
+            Route::post('send-msg/{pengaduan}', [DashboardController::class, 'sendMsg'])->name('send-msg');
+            Route::get('conversation/{pengaduan}', [DashboardController::class, 'conversation'])->name('conversation');
             // Route::resource('notif', NotifEventController::class);
         });
 
         Route::middleware('pengawas')->prefix('pengawas')->name('pengawas.')->group(function () {
             Route::get('/', [PengawasDashboardController::class, 'index'])->name('index');
+            Route::post('send-msg/{pengaduan}', [PengawasDashboardController::class, 'sendMsg'])->name('send-msg');
+            Route::get('conversation/{pengaduan}', [PengawasDashboardController::class, 'conversation'])->name('conversation');
+
             Route::get('pengaduan/{pengaduan}/update-status/{status}', [PengawasPengaduanController::class, 'updateStatus'])->name('pengaduan.update-status');
             Route::resource('pengaduan', PengawasPengaduanController::class);
         });
