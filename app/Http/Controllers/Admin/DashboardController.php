@@ -28,7 +28,7 @@ class DashboardController extends Controller
 
     function sendMsg(Request $request, $pengaduan)
     {
-        $user = App\Models\JwtSession::user();
+        $user = JwtSession::user();
         Conversation::create([
             'pengaduan_id' => $pengaduan,
             'replied_by' => $user->nama,
