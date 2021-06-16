@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $pengaduan = Pengaduan::find($pengaduan);
 
         // user notif
-        $notif = NotifTemplate::where('send_to','user')->where('chat_baru','pengaduan_masuk')->first();
+        $notif = NotifTemplate::where('send_to','user')->where('event_name','chat_baru')->first();
         if($notif)
         {
             $message = $notif->template_text;
