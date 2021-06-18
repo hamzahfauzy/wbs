@@ -5,8 +5,8 @@
             <a class="navbar-brand brand-logo text-white font-weight-bold" href="{{url()->to('/')}}"><img src="{{asset('images/logo.png')}}" style="height:58px!important;"> Whistle Blowing System</a>
             <a class="navbar-brand brand-logo-mini text-white font-weight-bold" href="{{url()->to('/')}}"><img src="{{asset('images/logo.png')}}" style="height:58px!important;"> WBS</a>
         </div>
-        @if($user)
         <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        @if($user)
         <ul class="navbar-nav navbar-nav-right">
             <li class="nav-item nav-profile dropdown">
             <a class="nav-link" href="#" data-toggle="dropdown" id="profileDropdown">
@@ -30,10 +30,10 @@
             </div>
             </li>
         </ul>
+        @endif
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="horizontal-menu-toggle">
             <span class="ti-menu"></span>
         </button>
         </div>
-        @endif
     </div>
 </nav>
