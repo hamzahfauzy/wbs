@@ -5,7 +5,7 @@
             <td>
                 <input type="text" name="pihaks[nama][]" class="form-control" placeholder="Nama" required>
             </td>
-            <td>
+            <td width="50%">
                 <input type="text" name="pihaks[jabatan][]" class="form-control" placeholder="Jabatan" required>
             </td>
         </tr>

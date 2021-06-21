@@ -5,7 +5,7 @@
             <td>
                 <input type="file" name="lampirans[file][]" class="form-control" required>
             </td>
-            <td>
+            <td width="50%">
                 <input type="text" name="lampirans[keterangan][]" class="form-control" placeholder="Keterangan" required>
             </td>
         </tr>
