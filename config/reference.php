@@ -12,6 +12,6 @@ return [
         'Guest',
         'Admin',
         'Pengawas',
-        'Pegawai',
+        'Guest',
     ]
 ];
