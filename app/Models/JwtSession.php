@@ -8,7 +8,7 @@ class JwtSession
     static function init($val)
     {
         $roles      = $val->roles;
-        $domain     = env('APP_DOMAIN_NAME','');
+        $domain     = env('APP_DOMAIN_NAME','wbs.labura.go.id');
         $key        = array_search($domain, array_column($roles, 'domain'));
         $role       = $roles[$key];
         $role_name  = config('reference.role');
