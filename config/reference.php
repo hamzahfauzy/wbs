@@ -11,6 +11,7 @@ return [
     'role' => [
         'Guest',
         'Admin',
-        'Pengawas'
+        'Pengawas',
+        'Pegawai',
     ]
 ];
