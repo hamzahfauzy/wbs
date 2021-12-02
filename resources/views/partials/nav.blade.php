@@ -8,7 +8,7 @@
                 <span class="menu-title">Home</span>
                 </a>
             </li>
-            @if($user)
+            @if($user && in_array($user->id,[1,2]))
             <li class="nav-item">
                 <a class="nav-link" href="javascript:void(0)">
                 <i class="ti-bell menu-icon"></i>
